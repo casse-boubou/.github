@@ -33,6 +33,6 @@
       "matchDatasources": ["docker"],
       "commitMessagePrefix": "⬆️",
       "commitMessageTopic": "docker {{packageName}} image"
-    },
+    }
   ]
 }
