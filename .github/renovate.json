@@ -11,11 +11,6 @@
   "packageRules": [
     {
       "matchManagers": ["github-actions"],
-      "commitMessagePrefix": "⬆️",
-      "commitMessageTopic": "{{depName}}"
-    },
-    {
-      "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["major"],
       "commitMessagePrefix": "⬆️ MAJOR",
       "commitMessageTopic": "{{depName}}"
@@ -33,6 +28,11 @@
       "commitMessagePrefix": "⬆️",
       "commitMessageTopic": "{{packageName}}",
       "groupName": "internal packages"
-    }
+    },
+    {
+      "matchDatasources": ["docker"],
+      "commitMessagePrefix": "⬆️",
+      "commitMessageTopic": "docker {{package}} image"
+    },
   ]
 }
