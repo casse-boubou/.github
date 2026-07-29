@@ -3,6 +3,9 @@
   "extends": ["config:recommended"],
   "labels": ["dependencies"],
   "timezone": "Europe/Paris",
+  "schedule": ["* 13-15 * * *"],
+  "prHourlyLimit": 3,
+  "minimumReleaseAge": "3 days",
   "rebaseWhen": "auto",
   "dependencyDashboardLabels": ["dependencies"],
   "packageRules": [
@@ -29,7 +32,7 @@
     {
       "matchDatasources": ["docker"],
       "commitMessagePrefix": "⬆️",
-      "commitMessageTopic": "docker {{package}} image"
+      "commitMessageTopic": "docker {{packageName}} image"
     },
   ]
 }
