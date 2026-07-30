@@ -33,7 +33,7 @@
       "commitMessageTopic": "docker {{packageName}} image"
     },
     {
-      "matchManagers": ["regex"],
+      "matchManagers": ["custom.regex"],
       "matchDatasources": ["repology"],
       "commitMessagePrefix": "⬆️",
       "commitMessageTopic": "{{depName}}",
