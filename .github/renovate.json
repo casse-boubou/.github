@@ -15,24 +15,25 @@
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["major"],
       "commitMessagePrefix": "⬆️ MAJOR",
-      "commitMessageTopic": "github-actions {{depName}}"
+      "commitMessageTopic": "github-actions {{packageName}}",
+      "groupName": "github-actions"
     },
     {
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["minor", "patch"],
       "commitMessagePrefix": "⬆️",
-      "commitMessageTopic": "github-actions {{depName}}",
-      "groupName": "minor and patch",
+      "commitMessageTopic": "github-actions {{packageName}}",
+      "groupName": "github-actions minor and/or patch",
       "automerge": true
     },
     {
-      "matchManagers": ["docker"],
+      "matchManagers": ["dockerfile"],
       "matchDatasources": ["docker"],
       "commitMessagePrefix": "⬆️",
       "commitMessageTopic": "docker {{packageName}} image"
     },
     {
-      "matchManagers": ["custom"],
+      "matchManagers": ["regex"],
       "matchDatasources": ["repology"],
       "commitMessagePrefix": "⬆️",
       "commitMessageTopic": "{{depName}}",
