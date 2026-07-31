@@ -6,7 +6,7 @@
     ":separateMultipleMajorReleases",
     "workarounds:bitnamiDockerImageVersioning",
     "workarounds:clamavDockerImageVersioning",
-    "workarounds:nodeDockerVersionin",
+    "workarounds:nodeDockerVersioning",
     "workarounds:typesNodeVersioning",
     "workarounds:ubuntuDockerVersioning"
   ],
