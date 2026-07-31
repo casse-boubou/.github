@@ -1,6 +1,15 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
+  "extends": [
+    "config:recommended",
+    "helpers:pinGitHubActionDigests",
+    ":separateMultipleMajorReleases",
+    "workarounds:bitnamiDockerImageVersioning",
+    "workarounds:clamavDockerImageVersioning",
+    "workarounds:nodeDockerVersionin",
+    "workarounds:typesNodeVersioning",
+    "workarounds:ubuntuDockerVersioning"
+  ],
   "labels": ["dependencies"],
   "timezone": "Europe/Paris",
   "schedule": ["* 13-15 * * *"],
@@ -8,7 +17,7 @@
   "minimumReleaseAge": "3 days",
   "minimumReleaseAgeBehaviour": "timestamp-optional",
   "prCreation": "not-pending",
-  "rebaseWhen": "auto",
+  "rebaseWhen": "behind-base-branch",
   "dependencyDashboardLabels": ["dependencies"],
   "packageRules": [
     {
@@ -16,7 +25,8 @@
       "matchUpdateTypes": ["major"],
       "commitMessagePrefix": "⬆️ MAJOR",
       "commitMessageTopic": "github-actions {{packageName}}",
-      "groupName": "github-actions"
+      "groupName": "github-actions",
+      "rebaseWhen": "conflicted"
     },
     {
       "matchManagers": ["github-actions"],
@@ -24,6 +34,7 @@
       "commitMessagePrefix": "⬆️",
       "commitMessageTopic": "github-actions {{packageName}}",
       "groupName": "github-actions minor and/or patch",
+      "rebaseWhen": "conflicted",
       "automerge": true
     },
     {
