@@ -33,7 +33,7 @@
       "matchUpdateTypes": ["minor", "patch"],
       "commitMessagePrefix": "⬆️",
       "commitMessageTopic": "github-actions {{packageName}}",
-      "groupName": "github-actions minor and/or patch",
+      "groupName": "github-actions minor and_or patch",
       "rebaseWhen": "conflicted",
       "automerge": true
     },
