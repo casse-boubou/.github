@@ -3,6 +3,10 @@
   "platform": "github",
   "detectHostRulesFromEnv": true,
   "repositories": [
-    "casse-boubou/release-test"
+    "casse-boubou/dnsmasq-rdns-for-adguard",
+    "casse-boubou/dozzle-apps-logs",
+    "casse-boubou/dragonify",
+    "casse-boubou/lazymc-for-crafty",
+    "casse-boubou/vpn-watcher"
   ]
 }
