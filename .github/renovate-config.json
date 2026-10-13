@@ -1,0 +1,8 @@
+{
+  "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
+  "platform": "github",
+  "detectHostRulesFromEnv": true,
+  "repositories": [
+    "casse-boubou/release-test"
+  ]
+}
