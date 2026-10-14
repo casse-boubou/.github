@@ -12,7 +12,7 @@
   ],
   "labels": ["dependencies"],
   "timezone": "Europe/Paris",
-  "prHourlyLimit": 3,
+  "prHourlyLimit": 0,
   "minimumReleaseAge": "3 days",
   "minimumReleaseAgeBehaviour": "timestamp-optional",
   "prCreation": "not-pending",
