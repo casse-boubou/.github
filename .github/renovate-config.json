@@ -3,6 +3,7 @@
   "platform": "github",
   "detectHostRulesFromEnv": true,
   "repositories": [
+    "casse-boubou/.github",
     "casse-boubou/dnsmasq-rdns-for-adguard",
     "casse-boubou/dozzle-apps-logs",
     "casse-boubou/dragonify",
