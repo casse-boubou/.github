@@ -20,33 +20,52 @@
   "dependencyDashboardLabels": ["dependencies"],
   "packageRules": [
     {
+      "matchUpdateTypes": ["pin"],
+      "addLabels": ["pin"],
+      "commitMessagePrefix": "📌",
+      "groupName": "pin-dependencies"
+    },
+    {
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["major"],
+      "addLabels": ["major"],
       "commitMessagePrefix": "⬆️ MAJOR",
       "commitMessageTopic": "github-actions {{packageName}}",
-      "groupName": "github-actions",
       "rebaseWhen": "conflicted"
     },
     {
       "matchManagers": ["github-actions"],
-      "matchUpdateTypes": ["minor", "patch"],
+      "matchUpdateTypes": ["minor"],
+      "addLabels": ["minor"],
       "commitMessagePrefix": "⬆️",
       "commitMessageTopic": "github-actions {{packageName}}",
-      "groupName": "github-actions minor and_or patch",
+      "groupName": "github-actions minor",
+      "rebaseWhen": "conflicted",
+      "automerge": true
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["patch"],
+      "addLabels": ["patch"],
+      "commitMessagePrefix": "⬆️",
+      "commitMessageTopic": "github-actions {{packageName}}",
+      "groupName": "github-actions patch",
       "rebaseWhen": "conflicted",
       "automerge": true
     },
     {
       "matchManagers": ["dockerfile"],
       "matchDatasources": ["docker"],
+      "addLabels": ["docker-images"],
       "commitMessagePrefix": "⬆️",
       "commitMessageTopic": "docker {{packageName}} image"
     },
     {
       "matchManagers": ["custom.regex"],
       "matchDatasources": ["repology"],
+      "addLabels": ["packages"],
       "commitMessagePrefix": "⬆️",
-      "commitMessageTopic": "{{depName}}",
+      "commitMessageTopic": "package {{depName}}",
       "groupName": "internal packages"
     }
   ]
