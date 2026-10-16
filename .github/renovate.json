@@ -20,54 +20,82 @@
   "dependencyDashboardLabels": ["dependencies"],
   "packageRules": [
     {
-      "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["major"],
       "addLabels": ["major"],
       "commitMessagePrefix": "⬆️ MAJOR",
-      "commitMessageTopic": "github-actions {{packageName}}",
-      "rebaseWhen": "conflicted"
+      "groupName": null
     },
     {
-      "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["minor"],
       "addLabels": ["minor"],
       "commitMessagePrefix": "⬆️",
-      "commitMessageTopic": "github-actions {{packageName}}",
-      "groupName": "github-actions minor",
-      "rebaseWhen": "conflicted",
-      "automerge": true
+      "groupName": null
     },
     {
-      "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["patch"],
       "addLabels": ["patch"],
       "commitMessagePrefix": "⬆️",
+      "groupName": null
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "addLabels": ["github-actions"],
       "commitMessageTopic": "github-actions {{packageName}}",
-      "groupName": "github-actions patch",
       "rebaseWhen": "conflicted",
+      "groupName": "{{#if isMajor}}github-actions major{{else}}{{#if isMinor}}github-actions minor{{else}}{{#if isPatch}}github-actions patch{{else}}github-actions{{/if}}{{/if}}{{/if}}"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["minor", "patch"],
       "automerge": true
     },
     {
-      "matchManagers": ["dockerfile"],
+      "matchManagers": ["dockerfile", "docker-compose"],
       "matchDatasources": ["docker"],
       "addLabels": ["docker-images"],
-      "commitMessagePrefix": "⬆️",
-      "commitMessageTopic": "docker {{packageName}} image"
+      "commitMessageTopic": "docker {{packageName}} image",
+      "groupName": null
+    },
+    {
+      // Synchronize Alpine with version in dockerfile
+      "matchFileNames": ["**/Dockerfile"],
+      "matchManagers": ["dockerfile"],
+      "matchDepNames": ["alpine"],
+      // bumpVersions would be more appropriate, but it doesn't allow changing _ to . in the version template.
+      // Instead we use postUpgradeTasks
+      // "bumpVersions": [
+      //   {
+      //     "name": "Synchronize Alpine with version in dockerfile",
+      //     "filePatterns": ["**/renovate.json"],
+      //     "bumpType": "sync",
+      //     "matchStrings": [
+      //       "\"packageNameTemplate\":\\s*\"alpine_(?<version>[0-9]{1}_[0-9]{2})/\\{\\{package\\}\\}\""
+      //     ]
+      //   }
+      // ],
+      "postUpgradeTasks": {
+        "commands": [
+          "sed -i -E 's/alpine_[0-9]+.[0-9]+/alpine_{{{newMajor}}}_{{{newMinor}}}/' .github/renovate.json"
+        ],
+        "fileFilters": [".github/renovate.json"],
+        "executionMode": "branch"
+      },
+      "groupName": null
     },
     {
       "matchManagers": ["custom.regex"],
       "matchDatasources": ["repology"],
       "addLabels": ["packages"],
-      "commitMessagePrefix": "⬆️",
       "commitMessageTopic": "package {{depName}}",
-      "groupName": "internal packages"
+      "groupName": null
     },
     {
-      "matchManagers": ["github-actions", "dockerfile"],
+      "matchManagers": ["github-actions", "dockerfile", "docker-compose"],
       "matchUpdateTypes": ["pin", "pinDigest"],
       "addLabels": ["pin"],
       "commitMessagePrefix": "📌",
-      "groupName": "pin-dependencies"
+      "groupName": "pin-dependencies",
+      "automerge": true
     }
   ]
 }
