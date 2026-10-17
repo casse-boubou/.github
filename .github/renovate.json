@@ -83,11 +83,23 @@
       "groupName": null
     },
     {
+      "matchManagers": ["dockerfile", "docker-compose"],
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["patch"],
+      "automerge": true
+    },
+    {
       "matchManagers": ["custom.regex"],
       "matchDatasources": ["repology"],
       "addLabels": ["packages"],
       "commitMessageTopic": "package {{depName}}",
       "groupName": null
+    },
+    {
+      "matchManagers": ["custom.regex"],
+      "matchDatasources": ["repology"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
     },
     {
       "matchManagers": ["github-actions", "dockerfile", "docker-compose"],

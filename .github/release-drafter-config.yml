@@ -1,27 +1,52 @@
 ---
 name-template: "v$RESOLVED_VERSION"
 tag-template: "v$RESOLVED_VERSION"
-change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
+change-template: "- $TITLE (#$NUMBER) by $AUTHORS"
 sort-direction: ascending
 
 categories:
+  - type: 'version-resolver'
+    semver-increment: 'major'
+    when:
+      labels:
+        - "major"
+  - type: 'version-resolver'
+    semver-increment: 'minor'
+    when:
+      labels:
+        - "minor"
+  - type: 'version-resolver'
+    semver-increment: 'patch'
+    when:
+      labels:
+        - "patch"
+  - type: 'version-resolver'
+    semver-increment: 'patch'
   - title: "🚨 Breaking changes"
-    semver-increment: "major"
+    exclusive: true
+    collapse-after: 6
     when:
       labels:
         - "breaking-change"
+    semver-increment: "major"
   - title: "✨ New features"
-    semver-increment: "minor"
+    exclusive: true
+    collapse-after: 6
     when:
       labels:
         - "new-feature"
+    semver-increment: "minor"
   - title: "🐛 Bug fixes"
-    semver-increment: "patch"
+    exclusive: true
+    collapse-after: 6
     when:
       labels:
         - "bugfix"
+        - 'bug'
+        - 'fix'
   - title: "🚀 Enhancements"
-    semver-increment: "patch"
+    exclusive: true
+    collapse-after: 6
     when:
       labels:
         - "enhancement"
@@ -29,24 +54,30 @@ categories:
         - "performance"
         - "chore"
   - title: "🧰 Maintenance"
-    semver-increment: "patch"
+    exclusive: true
+    collapse-after: 6
     when:
       labels:
         - "maintenance"
         - "ci"
+        - "pin"
   - title: "📚 Documentation"
-    semver-increment: "patch"
+    exclusive: true
+    collapse-after: 6
     when:
       labels:
         - "documentation"
   - title: "⬆️ Dependency updates"
-    semver-increment: "patch"
+    exclusive: true
     when:
       labels:
         - "dependencies"
+    collapse-after: 6
+
 
 template: |
   ## What’s changed
+  [Full Changelog from $PREVIOUS_TAG to $RESOLVED_TAG](https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...$RESOLVED_TAG)
 
   $CHANGES
 
