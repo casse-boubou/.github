@@ -104,7 +104,7 @@
     },
     {
       "matchManagers": ["github-actions", "dockerfile", "docker-compose"],
-      "matchUpdateTypes": ["pin", "pinDigest"],
+      "matchUpdateTypes": ["pin", "pinDigest", "digest"],
       "addLabels": ["pin"],
       "commitMessagePrefix": "📌",
       "minimumReleaseAge": "0 days",
