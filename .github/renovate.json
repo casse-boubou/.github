@@ -35,6 +35,7 @@
       "matchUpdateTypes": ["patch"],
       "addLabels": ["patch"],
       "commitMessagePrefix": "⬆️",
+      "minimumReleaseAge": "0 days",
       "groupName": null
     },
     {
@@ -106,6 +107,7 @@
       "matchUpdateTypes": ["pin", "pinDigest"],
       "addLabels": ["pin"],
       "commitMessagePrefix": "📌",
+      "minimumReleaseAge": "0 days",
       "groupName": "pin-dependencies",
       "automerge": true
     }
