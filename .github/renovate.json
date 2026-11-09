@@ -50,11 +50,19 @@
       "automerge": true
     },
     {
-      "matchManagers": ["dockerfile", "docker-compose"],
+      "matchManagers": ["dockerfile"],
       "matchDatasources": ["docker"],
       "addLabels": ["docker-images"],
       "commitMessageTopic": "docker {{packageName}} image",
       "groupName": null
+    },
+    {
+      "matchManagers": ["docker-compose"],
+      "matchDatasources": ["docker"],
+      "matchFileNames": ["docker/docker-compose.yml"],
+      "addLabels": ["documentation"],
+      "commitMessageTopic": "docker-compose {{packageName}} image",
+      "automerge": true
     },
     {
       // Synchronize Alpine with version in dockerfile
